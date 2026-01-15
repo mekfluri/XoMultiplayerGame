@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Live XOX Game</h1>
+
+  <div class="room-selection" *ngIf="!currentRoom">
+    <input type="text" placeholder="Unesite ime" [(ngModel)]="username" />
+    <button (click)="joinRoom('Room1')">Pridruži se Room1</button>
+    <button (click)="joinRoom('Room2')">Pridruži se Room2</button>
+  </div>
+
+  <div *ngIf="currentRoom">
+    <h2>Room: {{ currentRoom }}</h2>
+    <button class="leave-room" (click)="leaveRoom()">Napusti sobu</button>
+
+    <div class="board">
+      <div class="cell" *ngFor="let cell of board; let i = index" (click)="makeMove(i)">
+        {{ cell }}
+      </div>
+    </div>
+
+    <div class="players">
+      <p>Na potezu: {{ players[turn] || '-' }}</p>
+      <p *ngIf="winner">Pobednik: {{ winner }}</p>
+    </div>
+  </div>
+
+  <div class="notifications">
+    <h3>Notifikacije:</h3>
+    <div *ngFor="let note of notifications">{{ note }}</div>
+  </div>
+</div>

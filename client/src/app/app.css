@@ -1,0 +1,198 @@
+.container {
+  max-width: 450px;
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 25px;
+  color: #2c3e50;
+  font-size: 2.2em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin: 0 0 15px;
+  color: #34495e;
+}
+
+h3 {
+  margin: 20px 0 10px;
+  color: #2c3e50;
+  font-size: 1.1em;
+}
+
+/* Room selection */
+.room-selection {
+  margin-bottom: 30px;
+}
+
+.room-selection input {
+  padding: 12px 15px;
+  width: 60%;
+  max-width: 200px;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.room-selection input:focus {
+  border-color: #3498db;
+}
+
+.room-selection button {
+  padding: 12px 20px;
+  margin: 10px 5px 0;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.room-selection button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  max-width: 300px;
+  margin: 30px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cell {
+  width: 90px;
+  height: 90px;
+  background: #ffffff;
+  border: 3px solid #34495e;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.cell:hover {
+  background: #ecf0f1;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cell:disabled {
+  cursor: not-allowed;
+}
+
+/* X i O boje */
+.cell:nth-child(odd):not(:empty) {
+  color: #e74c3c; /* X - crvena */
+}
+
+.cell:nth-child(even):not(:empty) {
+  color: #3498db; /* O - plava */
+}
+
+/* Buttons */
+.leave-room {
+  padding: 10px 20px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.leave-room:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* Players info */
+.players {
+  margin: 20px 0;
+  font-size: 1.2em;
+  color: #2c3e50;
+}
+
+.players p {
+  margin: 8px 0;
+}
+
+.winner {
+  font-size: 1.5em;
+  color: #27ae60;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Notifications */
+.notifications {
+  margin-top: 30px;
+  text-align: left;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+.notifications div {
+  background: #d5dbe8;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2c3e50;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Responsivnost */
+@media (max-width: 480px) {
+  .board {
+    grid-gap: 8px;
+    padding: 10px;
+  }
+  
+  .cell {
+    width: 75px;
+    height: 75px;
+    font-size: 40px;
+  }
+  
+  .room-selection button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+}
