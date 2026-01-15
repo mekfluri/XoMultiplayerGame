@@ -97,6 +97,7 @@ Otvori browser na:
 
 ```
 http://localhost:4200
+ukoliko je port zauzet, pokrenuce se na drugom portu
 ```
 
 Frontend će se automatski povezati sa Node.js serverom preko Socket.IO.
@@ -110,49 +111,35 @@ Frontend će se automatski povezati sa Node.js serverom preko Socket.IO.
 3. Izaberi sobu (`Room1` ili `Room2`)
 4. Klikni **Join Room**
 5. Kada se povežu dva igrača:
-
    * Prvi dobija **X**, drugi **O**
    * Potezi se šalju serveru i prikazuju drugom igraču u realnom vremenu
-6. Igra se završava pobedom, remijem, ili ako igrač napusti sobu
+6. Igra se završava pobedom, ili ako igrač napusti sobu
 
 ---
+## Admin Panel (opciono)
 
-## Reprodukcija rezultata (za seminarski rad)
+U `server.js` postoji deo koda za **@socket.io/admin-ui** koji omogućava praćenje soba i igrača u realnom vremenu preko web interfejsa.  
 
-1. Pokreni server
-2. Pokreni frontend i poveži dva igrača (isto ili različite mašine u istoj mreži)
-3. Odigraj 3–5 partija sa sledećim ishodima:
+> Napomena: Ako odkomentarišeš ovaj deo, admin panel će raditi, ali neke funkcionalnosti igre mogu prestati da rade zbog greške sa Proxy objektom u trenutnoj verziji paketa.  
+> Preporuka: korišćenje samo za praćenje konekcija.
 
-   * pobeda X
-   * pobeda O
-   * remi
-   * jedan igrač napusti igru pre kraja
-   * pokušaj poteza kad nije tvoj red (treba da bude ignorisan)
-4. Snimi ekran ili screenshot-ove ključnih trenutaka
-5. Uporedi sa slajdovima 8–14 u fajlu **Prezentacija.pptx**
+Primer koda u `server.js`:
 
----
+```js
+// import { instrument } from "@socket.io/admin-ui";
+
+//instrument(io, { auth: false });
 
 ## PowerPoint prezentacija (Prezentacija.pptx)
 
-Sadrži:
-
-* Uvod i motivacija
-* Ciljevi projekta
-* Arhitektura sistema (klijent ↔ server dijagram)
-* UML dijagrami klasa (ako postoje)
-* Ključni delovi koda sa komentarima
-* Screenshot-ovi toka igre (povezivanje, potezi, kraj partije)
-* Test slučajevi i rezultati
-* Zaključak
-* Moguća proširenja
+Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.IO. Prikazuje sve od instalacije i osnovnog podešavanja, preko demonstracije ključnih funkcija i metoda za real-time komunikaciju, do primera njihove primene u multiplayer igri "X i O". Takođe, sadrži uporednu analizu sa sličnim tehnologijama, ističući prednosti i ograničenja Socket.IO, kao i praktične savete za integraciju u projekte. Sve je ilustrovano dijagramima, screenshot-ovima toka igre i primerima koda kako bi se korisnicima olakšalo razumevanje i primena u sopstvenim projektima.
 
 ---
 
 ## Moguća proširenja
 
 * Chat poruke tokom igre
-* Statistika (broj pobeda, poraza, remija)
+* Statistika (broj pobeda, poraza)
 * Single-player mod sa AI protivnikom
 * Više soba / lobby sistem
 * Prebacivanje na web interfejs sa WebSocket
@@ -163,3 +150,4 @@ Sadrži:
 ## Licenca
 
 Projekat je namenjen isključivo edukativnoj svrsi.
+
