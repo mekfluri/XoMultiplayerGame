@@ -49,8 +49,8 @@ XoXoMultiplayerGame/
 ### 1. Preuzimanje projekta
 
 ```
-git clone https://github.com/mekfluri/XoXoMultiplayerGame.git
-cd XoXoMultiplayerGame
+git clone https://github.com/mekfluri/XoMultiplayerGame.git
+cd XoMultiplayerGame
 ````
 
 ### 2. Instalacija zavisnosti
@@ -59,13 +59,19 @@ cd XoXoMultiplayerGame
 
 ```
 npm install
+npm install "socket.io" "@socket.io/admin-ui"
+npm install --save-dev nodemon
 ```
 
 * **Frontend** (Angular):
 
 ```
 cd src
-npm install
+Remove-Item -Force package-lock.json
+npm install -g @angular/cli@21
+npm install --save-dev @angular/cli@21 @angular/core@21 @angular/common@21 @angular/compiler@21 @angular/forms@21 @angular/platform-browser@21 @angular/router@21 @angular/compiler-cli@21 @angular-devkit/build-angular@21 rxjs@7 tslib typescript@5 vitest jsdom socket.io-client
+npm audit fix --force
+npm start
 ```
 
 ### 3. Pokretanje servera
