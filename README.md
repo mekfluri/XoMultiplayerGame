@@ -2,7 +2,7 @@
 
 **Multiplayer varijanta klasične igre X i O (Tic-Tac-Toe) preko mreže**  
 
-Ovaj repozitorijum je **praktični tutorijal za korišćenje Socket.IO** za real-time multiplayer igre. Projekat prikazuje kako dva klijenta mogu da se povežu na jedan server i igraju igru u realnom vremenu, sa trenutnom sinhronizacijom poteza, obradom prekida veze, i obaveštenjima za igrače.  
+Ovaj repozitorijum je **praktični tutorijal za korišćenje Socket.IO** za real-time multiplayer igre. Projekat prikazuje kako dva ili više klijenta mogu da se povežu na jedan server i igraju igru u realnom vremenu, sa trenutnom sinhronizacijom poteza, obradom prekida veze, i obaveštenjima za igrače.  
 
 **Tehnološki fokus:**  
 - Node.js server sa Socket.IO za WebSocket komunikaciju  
@@ -18,7 +18,7 @@ Ovaj repozitorijum je **praktični tutorijal za korišćenje Socket.IO** za real
 - Svaki potez se trenutno šalje serveru i prosleđuje drugom igraču  
 - Automatska detekcija pobede (tri u nizu – horizontalno, vertikalno, dijagonalno)  
 - Grafički interfejs preko Angular-a  
-- Statusne poruke: čekanje protivnika, tvoj potez, pobeda / poraz / nerešeno 
+- Statusne poruke: čekanje protivnika, tvoj potez, pobeda / poraz / nerešeno  
 - Obrada prekida veze jednog igrača  
 
 ---
@@ -34,13 +34,17 @@ Ovaj repozitorijum je **praktični tutorijal za korišćenje Socket.IO** za real
 
 ## Struktura repozitorijuma
 
-XoXoMultiplayerGame/  
-├── server.js                       ← Node.js server sa Socket.IO  
-├── src/app/                         ← Angular frontend  
-│   └── app.component.ts             ← glavna Angular komponenta i logika igre  
-├── Prezentacija.pptx                ← dokumentacija projekta (UML, screenshot-ovi, analiza)  
-├── README.md                         
-└── .gitignore  
+```
+
+XoXoMultiplayerGame/
+├── server.js                       ← Node.js server sa Socket.IO
+├── src/app/                         ← Angular frontend
+│   └── app.component.ts             ← glavna Angular komponenta i logika igre
+├── Prezentacija.pptx                ← dokumentacija projekta (UML, screenshot-ovi, analiza)
+├── README.md
+└── .gitignore
+
+````
 
 ---
 
@@ -48,24 +52,24 @@ XoXoMultiplayerGame/
 
 ### 1. Preuzimanje projekta
 
-```
+```bash
 git clone https://github.com/mekfluri/XoMultiplayerGame.git
-cd XoMultiplayerGame
+cd XoXoMultiplayerGame
 ````
 
 ### 2. Instalacija zavisnosti
 
-* **Server** (Node.js):
+* **Server (Node.js):**
 
-```
+```bash
 npm install
 npm install "socket.io" "@socket.io/admin-ui"
 npm install --save-dev nodemon
 ```
 
-* **Frontend** (Angular):
+* **Frontend (Angular):**
 
-```
+```bash
 cd src
 Remove-Item -Force package-lock.json
 npm install -g @angular/cli@21
@@ -76,7 +80,7 @@ npm start
 
 ### 3. Pokretanje servera
 
-```
+```bash
 node server.js
 ```
 
@@ -88,7 +92,7 @@ Server radi na http://localhost:8080
 
 ### 4. Pokretanje frontend-a (Angular)
 
-```
+```bash
 npm start
 ```
 
@@ -96,7 +100,6 @@ Otvori browser na:
 
 ```
 http://localhost:4200
-ukoliko je port zauzet, pokrenuce se na drugom portu
 ```
 
 Frontend će se automatski povezati sa Node.js serverom preko Socket.IO.
@@ -110,29 +113,104 @@ Frontend će se automatski povezati sa Node.js serverom preko Socket.IO.
 3. Izaberi sobu (`Room1` ili `Room2`)
 4. Klikni **Join Room**
 5. Kada se povežu dva igrača:
+
    * Prvi dobija **X**, drugi **O**
    * Potezi se šalju serveru i prikazuju drugom igraču u realnom vremenu
-6. Igra se završava pobedom, ili ako igrač napusti sobu
+6. Igra se završava pobedom, remijem, ili ako igrač napusti sobu
 
 ---
+
 ## Admin Panel (opciono)
 
-U `server.js` postoji deo koda za **@socket.io/admin-ui** koji omogućava praćenje soba i igrača u realnom vremenu preko web interfejsa.  
+U `server.js` postoji deo koda za **@socket.io/admin-ui** koji omogućava praćenje soba i igrača u realnom vremenu preko web interfejsa.
 
-> Napomena: Ako odkomentarišeš ovaj deo, admin panel će raditi, ali neke funkcionalnosti igre mogu prestati da rade zbog greške sa Proxy objektom u trenutnoj verziji paketa.  
+> Napomena: Ako odkomentarišeš ovaj deo, admin panel će raditi, ali neke funkcionalnosti igre mogu prestati da rade zbog greške sa Proxy objektom u trenutnoj verziji paketa.
 > Preporuka: korišćenje samo za praćenje konekcija.
 
 Primer koda u `server.js`:
 
 ```js
 // import { instrument } from "@socket.io/admin-ui";
-
-//instrument(io, { auth: false });
+// instrument(io, { auth: false });
 ```
 
-## PowerPoint prezentacija (Prezentacija.pptx)
+Admin panel omogućava nadzor WebSocket konekcija, trenutnih soba i igrača, i brzo debagovanje aplikacije.
 
-Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.IO. Prikazuje sve od instalacije i osnovnog podešavanja, preko demonstracije ključnih funkcija i metoda za real-time komunikaciju, do primera njihove primene u multiplayer igri "X i O". Takođe, sadrži uporednu analizu sa sličnim tehnologijama, ističući prednosti i ograničenja Socket.IO, kao i praktične savete za integraciju u projekte. Sve je ilustrovano dijagramima, screenshot-ovima toka igre i primerima koda kako bi se korisnicima olakšalo razumevanje i primena u sopstvenim projektima.
+---
+
+## Socket.IO tutorijal i objašnjenje
+
+Socket.IO je biblioteka koja omogućava dvosmernu, real-time komunikaciju između web klijenata i servera. Bazira se na WebSocket protokolu, ali dodaje fallback alternative (npr. long polling) kada WebSocket nije podržan.
+
+Bez Socket.IO, svaki zahtev klijenta zahteva novo otvaranje konekcije sa serverom, što može uzrokovati kašnjenja pri velikom broju zahteva. Socket.IO kreira stalnu vezu između klijenta i servera, omogućavajući slanje više poruka i događaja u realnom vremenu bez dodatnog troška ponovnog povezivanja.
+
+Idealne primene Socket.IO su:
+
+* Chat i messaging sistemi
+* Multiplayer online igre
+* Kolaborativni alati (npr. zajedničko editovanje dokumenata)
+* Live notifikacije i dashboard-ovi
+* Praćenje podataka u realnom vremenu (berzanski tikeri, senzori)
+
+---
+
+## Rad sa Socket.IO u projektu
+
+### Server-side
+
+* Kreira se HTTP server: `http.createServer()`
+* Socket.IO se inicijalizuje na serveru: `const io = new Server(httpServer, { cors: {...} })`
+* CORS podešavanja uključuju Angular frontend i admin panel
+* Ping intervali i timeouti definišu koliko često se proverava veza
+* `io.of('/game')` kreira namespace za logičku separaciju komunikacije
+* Socket se vezuje za sobe: `socket.join(room)`
+
+### Client-side
+
+* Klijent koristi `io('http://localhost:8080/game')` za povezivanje
+* Eventi se registruju preko `socket.on('event', callback)`
+* Slanje događaja serveru preko `socket.emit('event', data, callback)`
+* Callback funkcije (acknowledgements) omogućavaju potvrdu uspeha akcija
+
+### Default eventi
+
+* `connect` – aktivira se na klijentu kada je konekcija uspostavljena
+* `connection` – aktivira se na serveru kada se novi klijent poveže
+* `disconnect` – aktivira se kada veza pukne
+* `connect_error` / `reconnect` – automatsko ponovno povezivanje
+
+### Custom eventi
+
+* `joinRoom`, `leaveRoom`, `makeMove`, `notification`, `gameUpdate`
+* Podaci se šalju kao objekti (`{ room, username }`, `{ index }`)
+* Server procesira događaje i prosleđuje relevantnim klijentima
+
+### Rooms i Namespaces
+
+* Rooms omogućavaju grupisanje klijenata unutar namespace-a
+* Emitovanje unutar sobe: `io.to(room).emit(...)`
+* Broadcast svim ostalim klijentima: `socket.broadcast.emit(...)`
+
+---
+
+## Zašto Socket.IO?
+
+* Jednostavan, intuitivan event-based API
+* Bogat set funkcija (rooms, namespaces, reconnects, heartbeat)
+* Fleksibilan za JavaScript/Node.js projekte
+* Pouzdan i kompatibilan (automatski fallback na HTTP)
+* Brzo skaliranje osnovnih scenarija
+
+Ovo štedi vreme u razvoju i pojednostavljuje implementaciju real-time aplikacija u poređenju sa čistim WebSocket-ima.
+
+---
+
+## Alternative
+
+* **Čisti WebSocket (ws)** – jednostavan, ali zahteva ručno upravljanje reconnect-om
+* **SignalR** – optimizovan za .NET, nije idealan za čist JS/Node
+* **SockJS** – fallback mehanizam, bez rooms/namespaces
+* **Firebase Realtime Database / Firestore** – cloud servis, zavisnost od treće strane
 
 ---
 
@@ -151,6 +229,7 @@ Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.
 
 Projekat je namenjen isključivo edukativnoj svrsi.
 
+```
 
-
-
+Hoćeš da to napravimo?
+```
