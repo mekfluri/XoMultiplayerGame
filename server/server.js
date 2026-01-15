@@ -1,6 +1,6 @@
 const http = require('http');
 const { Server } = require('socket.io');
-//const { instrument } = require('@socket.io/admin-ui');
+const { instrument } = require('@socket.io/admin-ui');
 
 const server = http.createServer();
 
@@ -13,7 +13,7 @@ const io = new Server(server, {
   pingTimeout: 5000
 });
 
-//instrument(io, { auth: false });
+instrument(io, { auth: false });
 
 const ROOMS = ['Room1', 'Room2'];
 
@@ -159,3 +159,4 @@ io.of('/game').on('connection', (socket) => {
 });
 
 server.listen(8080, () => console.log('Server radi na http://localhost:8080'));
+
