@@ -84,7 +84,6 @@ Primer izlaza:
 
 ```
 Server radi na http://localhost:8080
-Čekam igrače...
 ```
 
 ### 4. Pokretanje frontend-a (Angular)
@@ -150,5 +149,6 @@ Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.
 ## Licenca
 
 Projekat je namenjen isključivo edukativnoj svrsi.
+
 
 
