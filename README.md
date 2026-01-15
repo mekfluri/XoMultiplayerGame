@@ -13,7 +13,7 @@ Ovaj repozitorijum je **praktični tutorijal za korišćenje Socket.IO** za real
 
 ## Šta projekat radi
 
-- Server može da upravlja sa više soba/igara istovremeno  
+- Server može da upravlja nad više soba/igara istovremeno  
 - Dva igrača se povezuju na istu sobu i igraju jedan protiv drugog  
 - Svaki potez se trenutno šalje serveru i prosleđuje drugom igraču  
 - Automatska detekcija pobede (tri u nizu – horizontalno, vertikalno, dijagonalno)  
@@ -150,4 +150,5 @@ Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.
 ## Licenca
 
 Projekat je namenjen isključivo edukativnoj svrsi.
+
 
