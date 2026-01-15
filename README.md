@@ -128,6 +128,7 @@ Primer koda u `server.js`:
 // import { instrument } from "@socket.io/admin-ui";
 
 //instrument(io, { auth: false });
+```
 
 ## PowerPoint prezentacija (Prezentacija.pptx)
 
@@ -149,6 +150,7 @@ Prezentacija predstavlja praktični tutorijal i uputstvo za korišćenje Socket.
 ## Licenca
 
 Projekat je namenjen isključivo edukativnoj svrsi.
+
 
 
 
